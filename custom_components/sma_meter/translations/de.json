@@ -1,0 +1,72 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Smart-Meter-Adapter (SMA)",
+        "description": "Geben Sie die Verbindungsdaten Ihres Smart-Meter-Adapters ein.",
+        "data": {
+          "host": "Host",
+          "token": "Autorisierungs-Token",
+          "use_https": "HTTPS verwenden",
+          "verify_ssl": "SSL-Zertifikat prüfen",
+          "scan_interval": "Abfrageintervall (Sekunden)"
+        }
+      },
+      "reconfigure": {
+        "title": "Smart-Meter-Adapter (SMA)",
+        "description": "Aktualisieren Sie die Verbindungsdaten Ihres Smart-Meter-Adapters.",
+        "data": {
+          "host": "Host",
+          "token": "Autorisierungs-Token",
+          "use_https": "HTTPS verwenden",
+          "verify_ssl": "SSL-Zertifikat prüfen"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zum Gerät fehlgeschlagen. Bitte Host und Token prüfen."
+    },
+    "abort": {
+      "already_configured": "Dieses Gerät ist bereits konfiguriert.",
+      "reconfigure_successful": "Konfiguration erfolgreich aktualisiert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "SMA Optionen",
+        "data": {
+          "scan_interval": "Abfrageintervall (Sekunden)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "active_energy_import_total": { "name": "Wirkenergie Bezug gesamt" },
+      "active_energy_export_total": { "name": "Wirkenergie Einspeisung gesamt" },
+      "active_energy_import_tariff1": { "name": "Wirkenergie Bezug Tarif 1" },
+      "active_energy_export_tariff1": { "name": "Wirkenergie Einspeisung Tarif 1" },
+      "active_energy_import_tariff2": { "name": "Wirkenergie Bezug Tarif 2" },
+      "active_energy_export_tariff2": { "name": "Wirkenergie Einspeisung Tarif 2" },
+      "active_power_import": { "name": "Wirkleistung Bezug" },
+      "active_power_export": { "name": "Wirkleistung Einspeisung" },
+      "active_power_sum": { "name": "Wirkleistung Summe" },
+      "active_power_l1": { "name": "Wirkleistung L1" },
+      "active_power_l2": { "name": "Wirkleistung L2" },
+      "active_power_l3": { "name": "Wirkleistung L3" },
+      "current_l1": { "name": "Strom L1" },
+      "current_l2": { "name": "Strom L2" },
+      "current_l3": { "name": "Strom L3" },
+      "voltage_l1": { "name": "Spannung L1" },
+      "voltage_l2": { "name": "Spannung L2" },
+      "voltage_l3": { "name": "Spannung L3" },
+      "frequency": { "name": "Frequenz" },
+      "power_factor": { "name": "Leistungsfaktor" },
+      "reactive_energy_import": { "name": "Blindenergie Bezug" },
+      "reactive_energy_export": { "name": "Blindenergie Einspeisung" },
+      "api_version": { "name": "API-Version" },
+      "sma_time": { "name": "SMA-Zeit" }
+    }
+  }
+}

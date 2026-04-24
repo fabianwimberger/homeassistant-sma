@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+
+# Test / lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.snap
+
+# Home Assistant
+config/
+
+# IDE
+.idea/
+.vscode/
+
+# Editor swap files
+*.swp
+*.swo
+*~
+*#
+
+# OS
+.DS_Store
+
+# Package managers
+uv.lock
+
+# Manuals / binary documentation
+*.pdf

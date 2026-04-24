@@ -1,0 +1,72 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Smart Meter Adapter (SMA)",
+        "description": "Enter the connection details of your Smart Meter Adapter.",
+        "data": {
+          "host": "Host",
+          "token": "Authorization Token",
+          "use_https": "Use HTTPS",
+          "verify_ssl": "Verify SSL certificate",
+          "scan_interval": "Scan interval (seconds)"
+        }
+      },
+      "reconfigure": {
+        "title": "Smart Meter Adapter (SMA)",
+        "description": "Update the connection details of your Smart Meter Adapter.",
+        "data": {
+          "host": "Host",
+          "token": "Authorization Token",
+          "use_https": "Use HTTPS",
+          "verify_ssl": "Verify SSL certificate"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the device. Please check the host and token."
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "reconfigure_successful": "Configuration updated successfully."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "SMA Options",
+        "data": {
+          "scan_interval": "Scan interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "active_energy_import_total": { "name": "Active energy import total" },
+      "active_energy_export_total": { "name": "Active energy export total" },
+      "active_energy_import_tariff1": { "name": "Active energy import tariff 1" },
+      "active_energy_export_tariff1": { "name": "Active energy export tariff 1" },
+      "active_energy_import_tariff2": { "name": "Active energy import tariff 2" },
+      "active_energy_export_tariff2": { "name": "Active energy export tariff 2" },
+      "active_power_import": { "name": "Active power import" },
+      "active_power_export": { "name": "Active power export" },
+      "active_power_sum": { "name": "Active power sum" },
+      "active_power_l1": { "name": "Active power L1" },
+      "active_power_l2": { "name": "Active power L2" },
+      "active_power_l3": { "name": "Active power L3" },
+      "current_l1": { "name": "Current L1" },
+      "current_l2": { "name": "Current L2" },
+      "current_l3": { "name": "Current L3" },
+      "voltage_l1": { "name": "Voltage L1" },
+      "voltage_l2": { "name": "Voltage L2" },
+      "voltage_l3": { "name": "Voltage L3" },
+      "frequency": { "name": "Frequency" },
+      "power_factor": { "name": "Power factor" },
+      "reactive_energy_import": { "name": "Reactive energy import" },
+      "reactive_energy_export": { "name": "Reactive energy export" },
+      "api_version": { "name": "API version" },
+      "sma_time": { "name": "SMA time" }
+    }
+  }
+}

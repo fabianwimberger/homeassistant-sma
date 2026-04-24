@@ -1,0 +1,9 @@
+{
+  "name": "Smart Meter Adapter (SMA)",
+  "content_in_root": false,
+  "filename": "sma_meter.zip",
+  "country": ["AT"],
+  "homeassistant": "2024.4.0",
+  "hacs": "1.18.0",
+  "render_readme": true
+}
