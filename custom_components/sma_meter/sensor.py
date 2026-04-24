@@ -67,4 +67,4 @@ class SmaSensor(SmaEntity, SensorEntity):
         if scaled == int(scaled) and self.entity_description.scale != 1.0:
             return int(scaled)
 
-        return round(scaled, 3)
+        return float(round(scaled, 3))
