@@ -52,7 +52,7 @@ class SmaSensor(SmaEntity, SensorEntity):
         """Return the sensor value."""
         if self.coordinator.data is None:
             return None
-        raw = self.coordinator.data.get(self._sma_key)
+        raw: float | str | None = self.coordinator.data.get(self._sma_key)
         if raw is None:
             return None
 
