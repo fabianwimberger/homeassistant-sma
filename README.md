@@ -8,6 +8,8 @@
 
 Custom integration for [Home Assistant](https://www.home-assistant.io/) that communicates directly with the **Smart Meter Adapter (SMA)** via its built-in JSON REST API. No MQTT broker or middleman needed.
 
+Screenshots: see the entity list below.
+
 ## Background
 
 The Smart Meter Adapter (SMA) from Österreichs E-Wirtschaft reads encrypted smart meter data locally and exposes it via a JSON REST API. There is no native Home Assistant integration for it. This integration polls the SMA directly, auto-discovers which OBIS codes your meter supports, and exposes them as HA sensors with correct units and scaling.
@@ -46,22 +48,19 @@ Restart Home Assistant.
 
 ### Configuration
 
-1. Go to **Settings > Devices & Services > Add Integration**
-2. Search for "Smart Meter Adapter (SMA)"
-3. Enter the IP address of your SMA (e.g. `192.168.1.100`)
-4. Enter the **Authorization Token** from the SMA web UI under *API → JSON*
-5. Configure HTTPS and SSL verification as needed
-6. Set the scan interval in seconds (default: 15, range: 5-300)
+1. Complete the [SMA device setup](docs/sma-setup.md) first to obtain your API token.
+2. In Home Assistant, go to **Settings > Devices & Services > Add Integration**
+3. Search for "Smart Meter Adapter (SMA)"
+4. Enter your SMA host (e.g. `192.168.1.100` or `sma.local`)
+5. Paste the **Authorization Token** from the SMA web UI
+6. Configure HTTPS and SSL verification as needed
+7. Set the scan interval in seconds (default: 15, range: 5-300)
 
 The integration validates the connection by reading the device status before completing setup.
 
 ## How It Works
 
-```
-Startup → Probe available OBIS codes → Read device info → Create sensors → Poll for updates
-```
-
-The SMA API returns a JSON object with all available OBIS codes. At startup, the integration probes each code to determine which sensors to create. This handles different meter configurations without manual configuration.
+At startup, the integration probes the SMA's JSON API to find which OBIS codes the meter supports, reads device info, and creates matching sensors. This auto-discovery handles different meter configurations without manual setup. After that, it polls for updates on the configured interval.
 
 ## Supported Sensors
 
