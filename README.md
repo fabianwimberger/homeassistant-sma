@@ -8,7 +8,10 @@
 
 Custom integration for [Home Assistant](https://www.home-assistant.io/) that communicates directly with the **Smart Meter Adapter (SMA)** via its built-in JSON REST API. No MQTT broker or middleman needed.
 
-Screenshots: see the entity list below.
+<p align="center">
+  <img src="docs/sma-screenshots/api-json.png" width="100%" alt="SMA JSON API response">
+  <br><em>The local SMA JSON API this integration polls and maps to Home Assistant entities</em>
+</p>
 
 ## Background
 
