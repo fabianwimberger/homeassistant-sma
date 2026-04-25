@@ -59,7 +59,7 @@ class SmaApiClient:
         return self._available_obis or set()
 
     def _headers(self) -> dict[str, str]:
-        return {"AuthorizationToken": self._token}
+        return {"Authorization": f"TOKEN {self._token}"}
 
     async def async_validate_connection(self) -> bool:
         """Validate we can connect to the SMA."""

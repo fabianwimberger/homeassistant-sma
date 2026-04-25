@@ -30,9 +30,9 @@ async def aiohttp_client_session() -> aiohttp.ClientSession:
 async def test_validate_connection_success(mock_api: aioresponses) -> None:
     """Test successful connection validation."""
     mock_api.get(
-        f"https://{HOST}/api/data/measurement.json",
+        f"https://{HOST}/api/v1/measurement",
         payload={"1-0:1.8.0": {"value": 100}},
-        headers={"AuthorizationToken": TOKEN},
+        headers={"Authorization": f"TOKEN {TOKEN}"},
     )
 
     async with aiohttp.ClientSession() as session:
@@ -43,7 +43,7 @@ async def test_validate_connection_success(mock_api: aioresponses) -> None:
 async def test_validate_connection_failure(mock_api: aioresponses) -> None:
     """Test connection validation with HTTP error."""
     mock_api.get(
-        f"https://{HOST}/api/data/measurement.json",
+        f"https://{HOST}/api/v1/measurement",
         status=401,
     )
 
@@ -55,7 +55,7 @@ async def test_validate_connection_failure(mock_api: aioresponses) -> None:
 async def test_probe_available_obis(mock_api: aioresponses, measurement_data: dict) -> None:
     """Test probing available OBIS codes."""
     mock_api.get(
-        f"https://{HOST}/api/data/measurement.json",
+        f"https://{HOST}/api/v1/measurement",
         payload=measurement_data,
     )
 
@@ -71,7 +71,7 @@ async def test_probe_available_obis(mock_api: aioresponses, measurement_data: di
 async def test_read_status(mock_api: aioresponses, status_data: dict) -> None:
     """Test reading status info."""
     mock_api.get(
-        f"https://{HOST}/api/sma/status.json",
+        f"https://{HOST}/api/v1/status",
         payload=status_data,
     )
 
@@ -85,7 +85,7 @@ async def test_read_status(mock_api: aioresponses, status_data: dict) -> None:
 async def test_read_status_suppressed_error(mock_api: aioresponses) -> None:
     """Test that status read errors are suppressed."""
     mock_api.get(
-        f"https://{HOST}/api/sma/status.json",
+        f"https://{HOST}/api/v1/status",
         status=500,
     )
 
@@ -98,7 +98,7 @@ async def test_read_status_suppressed_error(mock_api: aioresponses) -> None:
 async def test_http_error_raises(mock_api: aioresponses) -> None:
     """Test that HTTP errors raise SmaApiError."""
     mock_api.get(
-        f"https://{HOST}/api/data/measurement.json",
+        f"https://{HOST}/api/v1/measurement",
         status=500,
     )
 
