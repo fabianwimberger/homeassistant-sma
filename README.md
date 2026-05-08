@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/fabianwimberger/homeassistant-sma/branch/main/graph/badge.svg)](https://codecov.io/gh/fabianwimberger/homeassistant-sma)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **⚠️ Disclaimer**: This is an independent, open-source project created by the community. It is **not affiliated with, endorsed by, or sponsored by Österreichs E-Wirtschaft**. Use at your own risk.
+> **⚠️ Disclaimer**: This is an independent, open-source project created by the community. It is **not affiliated with, endorsed by, or sponsored by Österreichs Energie, Österreichs E-Wirtschaft, or any Austrian grid operator**. "Smart Meter Adapter", "SMA", and associated logos are trademarks of their respective owners. Use of these names is solely for identification and compatibility purposes. Use at your own risk.
 
 Custom integration for [Home Assistant](https://www.home-assistant.io/) that communicates directly with the **Smart Meter Adapter (SMA)** via its built-in JSON REST API. No MQTT broker or middleman needed.
 
@@ -119,4 +119,4 @@ See [docs/TESTING.md](docs/TESTING.md) for testing with a fresh Home Assistant i
 
 MIT License — see [LICENSE](LICENSE) file.
 
-This project uses the "Smart Meter Adapter (SMA)" name to identify the compatible device. This project is an independent, community-created integration and is **not affiliated with, endorsed by, or sponsored by Österreichs E-Wirtschaft**. Use of the SMA name is for identification and compatibility purposes only.
+This project uses the "Smart Meter Adapter (SMA)" name to identify the compatible device. This project is an independent, community-created integration and is **not affiliated with, endorsed by, or sponsored by Österreichs Energie, Österreichs E-Wirtschaft, or any Austrian grid operator**. Use of the SMA name is for identification and compatibility purposes only.
