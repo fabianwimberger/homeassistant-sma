@@ -44,6 +44,7 @@ def measurement_data() -> dict[str, Any]:
         "1-0:2.7.0": {"value": 0, "time": 1104625548},
         "1-0:16.7.0": {"value": 33, "time": 1104625548},
         "api_version": "v1",
+        "name": "SMA-DEVICE-001",
         "sma_time": 14011.8,
     }
 
@@ -52,7 +53,10 @@ def measurement_data() -> dict[str, Any]:
 def status_data() -> dict[str, Any]:
     """Return sample status data."""
     return {
-        "sma_id": "SMA-12345",
-        "firmware_version": "1.2.3",
-        "serial_number": "ABC123",
+        "name": "SMA-DEVICE-001",
+        "fw_version": "1.2.3",
+        "meter": {
+            "manufacturer": "NES",
+            "name": "METER-TEST-001",
+        },
     }

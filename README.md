@@ -57,7 +57,7 @@ Restart Home Assistant.
 4. Enter your SMA host (e.g. `192.168.1.100` or `sma.local`)
 5. Paste the **Authorization Token** from the SMA web UI
 6. Configure HTTPS and SSL verification as needed
-7. Set the scan interval in seconds (default: 15, range: 5-300)
+7. Set the scan interval in seconds (default: 30, range: 5-300)
 
 The integration validates the connection by reading the device status before completing setup.
 

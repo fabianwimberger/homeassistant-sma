@@ -45,7 +45,8 @@ class SmaSensor(SmaEntity, SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._sma_key = description.obis_code
-        self._attr_unique_id = f"{coordinator.client.host}_{description.key}"
+        device_id = coordinator.device_info_data.get("device_id") or coordinator.client.host
+        self._attr_unique_id = f"{device_id}_{description.key}"
 
     @property
     def native_value(self) -> float | int | str | None:

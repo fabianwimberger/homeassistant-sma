@@ -40,7 +40,7 @@ async def test_setup_entry(hass: HomeAssistant) -> None:
         ),
         patch(
             "custom_components.sma_meter.api.SmaApiClient.async_read_status",
-            return_value={"sma_id": "SMA-TEST", "firmware_version": "1.0.0"},
+            return_value={"name": "SMA-DEVICE-001", "fw_version": "1.0.0"},
         ),
         patch(
             "custom_components.sma_meter.coordinator.SmaDataCoordinator._async_update_data",
