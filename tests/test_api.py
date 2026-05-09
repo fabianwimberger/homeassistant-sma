@@ -106,3 +106,18 @@ async def test_http_error_raises(mock_api: aioresponses) -> None:
         client = SmaApiClient(HOST, TOKEN, session)
         with pytest.raises(SmaApiError):
             await client.async_read_measurement()
+
+
+async def test_invalid_json_raises(mock_api: aioresponses) -> None:
+    """Test that invalid JSON raises SmaApiError."""
+    mock_api.get(
+        f"https://{HOST}/api/v1/measurement",
+        status=200,
+        body="not valid json",
+        content_type="application/json",
+    )
+
+    async with aiohttp.ClientSession() as session:
+        client = SmaApiClient(HOST, TOKEN, session)
+        with pytest.raises(SmaApiError, match="Invalid JSON"):
+            await client.async_read_measurement()

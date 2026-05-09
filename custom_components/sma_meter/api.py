@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import ssl
 from typing import Any
@@ -83,10 +84,9 @@ class SmaApiClient:
         available: set[str] = set()
         if isinstance(data, dict):
             for key, value in data.items():
-                if (
-                    isinstance(value, dict)
-                    and "value" in value
-                    or key in ("api_version", "sma_time")
+                if (isinstance(value, dict) and "value" in value) or key in (
+                    "api_version",
+                    "sma_time",
                 ):
                     available.add(key)
 
@@ -142,3 +142,5 @@ class SmaApiClient:
             raise SmaApiError(f"Connection error: {err}") from err
         except TimeoutError as err:
             raise SmaApiError(f"Timeout connecting to {self._host}") from err
+        except json.JSONDecodeError as err:
+            raise SmaApiError(f"Invalid JSON from {endpoint}: {err}") from err
