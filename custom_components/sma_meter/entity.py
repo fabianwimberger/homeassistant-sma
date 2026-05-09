@@ -18,10 +18,11 @@ class SmaEntity(CoordinatorEntity[SmaDataCoordinator]):
     def __init__(self, coordinator: SmaDataCoordinator) -> None:
         super().__init__(coordinator)
         info = coordinator.device_info_data
+        device_id = info.get("device_id") or coordinator.client.host
         self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, coordinator.client.host)},
-            name=info.get("sma_id", "Smart Meter Adapter"),
-            manufacturer="Österreichs E-Wirtschaft",
+            identifiers={(DOMAIN, device_id)},
+            name=info.get("name", "Smart Meter Adapter"),
+            manufacturer=info.get("manufacturer", "Smart Meter Adapter"),
             model="Smart Meter Adapter",
             sw_version=info.get("firmware_version"),
             serial_number=info.get("serial_number"),

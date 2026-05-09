@@ -66,6 +66,7 @@ async def test_probe_available_obis(mock_api: aioresponses, measurement_data: di
         assert "1-0:1.7.0" in available
         assert "api_version" in available
         assert "sma_time" in available
+        assert "name" not in available
 
 
 async def test_read_status(mock_api: aioresponses, status_data: dict) -> None:
@@ -78,8 +79,41 @@ async def test_read_status(mock_api: aioresponses, status_data: dict) -> None:
     async with aiohttp.ClientSession() as session:
         client = SmaApiClient(HOST, TOKEN, session)
         result = await client.async_read_status()
-        assert result["sma_id"] == "SMA-12345"
-        assert result["firmware_version"] == "1.2.3"
+        assert result["name"] == "SMA-DEVICE-001"
+        assert result["fw_version"] == "1.2.3"
+        assert result["meter.manufacturer"] == "NES"
+
+
+async def test_read_device_id_prefers_status_name(
+    mock_api: aioresponses, status_data: dict
+) -> None:
+    """Test reading a stable device identifier."""
+    mock_api.get(
+        f"https://{HOST}/api/v1/status",
+        payload=status_data,
+    )
+
+    async with aiohttp.ClientSession() as session:
+        client = SmaApiClient(HOST, TOKEN, session)
+        assert await client.async_read_device_id() == "SMA-DEVICE-001"
+
+
+async def test_read_device_id_falls_back_to_measurement_meter_id(
+    mock_api: aioresponses,
+) -> None:
+    """Test reading a stable device identifier from measurement data."""
+    mock_api.get(
+        f"https://{HOST}/api/v1/status",
+        status=500,
+    )
+    mock_api.get(
+        f"https://{HOST}/api/v1/measurement",
+        payload={"0-0:96.1.0": {"value": "SMA-DEVICE-001"}},
+    )
+
+    async with aiohttp.ClientSession() as session:
+        client = SmaApiClient(HOST, TOKEN, session)
+        assert await client.async_read_device_id() == "SMA-DEVICE-001"
 
 
 async def test_read_status_suppressed_error(mock_api: aioresponses) -> None:

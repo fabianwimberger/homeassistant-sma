@@ -48,8 +48,8 @@ async def test_sensor_unique_id(hass: HomeAssistant) -> None:
     coordinator.client = MagicMock()
     coordinator.client.host = "192.168.1.100"
     coordinator.data = {}
-    coordinator.device_info_data = {}
+    coordinator.device_info_data = {"device_id": "SMA-DEVICE-001"}
 
     desc = OBIS_DESCRIPTION_MAP["1-0:1.8.0"]
     sensor = SmaSensor(coordinator, desc)
-    assert sensor.unique_id == "192.168.1.100_active_energy_import_total"
+    assert sensor.unique_id == "SMA-DEVICE-001_active_energy_import_total"

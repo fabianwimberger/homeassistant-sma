@@ -12,7 +12,7 @@ from custom_components.sma_meter.diagnostics import async_get_config_entry_diagn
 async def test_diagnostics(hass: HomeAssistant) -> None:
     """Test diagnostics output."""
     entry = MagicMock()
-    entry.data = {"host": "192.168.1.100"}
+    entry.data = {"host": "192.168.1.100", "token": "secret-token"}
 
     coordinator = MagicMock()
     coordinator.client.available_obis = {"1-0:1.8.0", "1-0:1.7.0"}
@@ -26,6 +26,7 @@ async def test_diagnostics(hass: HomeAssistant) -> None:
     result = await async_get_config_entry_diagnostics(hass, entry)
 
     assert result["config"]["host"] == "192.168.1.100"
+    assert result["config"]["entry_data"]["token"] == "**REDACTED**"
     assert result["last_update_success"] is True
     assert result["obis_codes"]["total_known"] > 0
     assert "1-0:1.8.0" in result["obis_codes"]["available"]

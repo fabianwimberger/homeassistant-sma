@@ -78,8 +78,7 @@ class SmaApiClient:
         try:
             data = await self._async_get_json(API_ENDPOINT_MEASUREMENT)
         except SmaApiError:
-            self._available_obis = set()
-            return self._available_obis
+            return set()
 
         available: set[str] = set()
         if isinstance(data, dict):
@@ -93,6 +92,28 @@ class SmaApiClient:
         self._available_obis = available
         _LOGGER.debug("Probed %d available OBIS codes", len(available))
         return available
+
+    async def async_read_device_id(self) -> str | None:
+        """Read the stable device identifier exposed by the SMA."""
+        status = await self.async_read_status()
+        for key in ("name", "serial_number", "sma_id"):
+            value = status.get(key)
+            if value:
+                return value
+
+        try:
+            measurement = await self.async_read_measurement()
+        except SmaApiError:
+            return None
+        name = measurement.get("name") if isinstance(measurement, dict) else None
+        if isinstance(name, str):
+            return name
+        meter_id = measurement.get("0-0:96.1.0") if isinstance(measurement, dict) else None
+        meter_value = meter_id.get("value") if isinstance(meter_id, dict) else None
+        if isinstance(meter_value, str):
+            return meter_value
+
+        return None
 
     async def async_read_measurement(self) -> dict[str, Any]:
         """Read measurement data from the SMA."""

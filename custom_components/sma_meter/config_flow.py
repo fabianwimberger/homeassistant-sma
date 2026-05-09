@@ -84,6 +84,9 @@ class SmaConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]  # HA 
             )
 
             if await client.async_validate_connection():
+                device_id = await client.async_read_device_id()
+                await self.async_set_unique_id(device_id or host)
+                self._abort_if_unique_id_configured()
                 return self.async_create_entry(
                     title=f"SMA ({host})",
                     data=user_input,
@@ -116,9 +119,10 @@ class SmaConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]  # HA 
             )
 
             if await client.async_validate_connection():
+                device_id = await client.async_read_device_id()
                 return self.async_update_reload_and_abort(
                     entry,
-                    unique_id=host,
+                    unique_id=device_id or entry.unique_id or host,
                     title=f"SMA ({host})",
                     data={**entry.data, **user_input},
                     reason="reconfigure_successful",

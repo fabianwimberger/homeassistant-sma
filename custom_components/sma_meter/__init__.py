@@ -53,9 +53,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: SmaConfigEntry) -> bool:
 
     # Read device info once at setup
     status_data = await client.async_read_status()
+    device_id = (
+        status_data.get("name")
+        or status_data.get("serial_number")
+        or status_data.get("sma_id", host)
+    )
     device_info = {
-        "sma_id": status_data.get("sma_id", host),
-        "firmware_version": status_data.get("firmware_version", ""),
+        "device_id": device_id,
+        "name": status_data.get("name", "Smart Meter Adapter"),
+        "firmware_version": status_data.get("firmware_version")
+        or status_data.get("fw_version", ""),
+        "manufacturer": status_data.get("meter.manufacturer", "Smart Meter Adapter"),
         "serial_number": status_data.get("serial_number", ""),
     }
 
