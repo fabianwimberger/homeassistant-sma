@@ -43,6 +43,18 @@ async def test_config_flow_success(hass: HomeAssistant) -> None:
             "custom_components.sma_meter.config_flow.SmaApiClient.async_read_device_id",
             return_value="SMA-DEVICE-001",
         ),
+        patch(
+            "custom_components.sma_meter.api.SmaApiClient.async_probe_available_obis",
+            return_value={"1-0:1.8.0"},
+        ),
+        patch(
+            "custom_components.sma_meter.api.SmaApiClient.async_read_status",
+            return_value={},
+        ),
+        patch(
+            "custom_components.sma_meter.coordinator.SmaDataCoordinator._async_update_data",
+            return_value={"1-0:1.8.0": 105.119},
+        ),
     ):
         result = await hass.config_entries.flow.async_init(
             DOMAIN,
@@ -94,6 +106,18 @@ async def test_config_flow_duplicate(hass: HomeAssistant) -> None:
         patch(
             "custom_components.sma_meter.config_flow.SmaApiClient.async_read_device_id",
             return_value="SMA-DEVICE-001",
+        ),
+        patch(
+            "custom_components.sma_meter.api.SmaApiClient.async_probe_available_obis",
+            return_value={"1-0:1.8.0"},
+        ),
+        patch(
+            "custom_components.sma_meter.api.SmaApiClient.async_read_status",
+            return_value={},
+        ),
+        patch(
+            "custom_components.sma_meter.coordinator.SmaDataCoordinator._async_update_data",
+            return_value={"1-0:1.8.0": 105.119},
         ),
     ):
         result = await hass.config_entries.flow.async_init(
