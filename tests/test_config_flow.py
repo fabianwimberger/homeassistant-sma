@@ -194,20 +194,21 @@ async def test_options_flow(hass: HomeAssistant) -> None:
             },
         )
 
-    assert result["type"] == FlowResultType.CREATE_ENTRY
-    entry = result["result"]
+        assert result["type"] == FlowResultType.CREATE_ENTRY
+        entry = result["result"]
 
-    result = await hass.config_entries.options.async_init(entry.entry_id)
-    assert result["type"] == FlowResultType.FORM
-    assert result["step_id"] == "init"
+        result = await hass.config_entries.options.async_init(entry.entry_id)
 
-    result = await hass.config_entries.options.async_configure(
-        result["flow_id"],
-        user_input={CONF_SCAN_INTERVAL: 60},
-    )
+        assert result["type"] == FlowResultType.FORM
+        assert result["step_id"] == "init"
 
-    assert result["type"] == FlowResultType.CREATE_ENTRY
-    assert result["data"][CONF_SCAN_INTERVAL] == 60
+        result = await hass.config_entries.options.async_configure(
+            result["flow_id"],
+            user_input={CONF_SCAN_INTERVAL: 60},
+        )
+
+        assert result["type"] == FlowResultType.CREATE_ENTRY
+        assert result["data"][CONF_SCAN_INTERVAL] == 60
 
 
 async def test_reconfigure_flow(hass: HomeAssistant) -> None:
@@ -244,13 +245,9 @@ async def test_reconfigure_flow(hass: HomeAssistant) -> None:
             },
         )
 
-    assert result["type"] == FlowResultType.CREATE_ENTRY
-    entry = result["result"]
+        assert result["type"] == FlowResultType.CREATE_ENTRY
+        entry = result["result"]
 
-    with patch(
-        "custom_components.sma_meter.config_flow.SmaApiClient.async_validate_connection",
-        return_value=True,
-    ):
         result = await hass.config_entries.flow.async_init(
             DOMAIN,
             context={
@@ -259,19 +256,9 @@ async def test_reconfigure_flow(hass: HomeAssistant) -> None:
             },
         )
 
-    assert result["type"] == FlowResultType.FORM
-    assert result["step_id"] == "reconfigure"
+        assert result["type"] == FlowResultType.FORM
+        assert result["step_id"] == "reconfigure"
 
-    with (
-        patch(
-            "custom_components.sma_meter.config_flow.SmaApiClient.async_validate_connection",
-            return_value=True,
-        ),
-        patch(
-            "custom_components.sma_meter.config_flow.SmaApiClient.async_read_device_id",
-            return_value="SMA-DEVICE-001",
-        ),
-    ):
         result = await hass.config_entries.flow.async_configure(
             result["flow_id"],
             user_input={
@@ -282,8 +269,8 @@ async def test_reconfigure_flow(hass: HomeAssistant) -> None:
             },
         )
 
-    assert result["type"] == FlowResultType.ABORT
-    assert result["reason"] == "reconfigure_successful"
+        assert result["type"] == FlowResultType.ABORT
+        assert result["reason"] == "reconfigure_successful"
 
 
 async def test_default_values_in_form(hass: HomeAssistant) -> None:
