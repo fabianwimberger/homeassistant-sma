@@ -3,10 +3,10 @@
   "name": "Smart Meter Adapter (SMA)",
   "codeowners": ["@fabianwimberger"],
   "config_flow": true,
+  "documentation": "https://github.com/fabianwimberger/homeassistant-sma",
   "integration_type": "device",
   "iot_class": "local_polling",
-  "version": "1.1.4",
+  "issue_tracker": "https://github.com/fabianwimberger/homeassistant-sma/issues",
   "requirements": ["aiohttp>=3.9.0"],
-  "documentation": "https://github.com/fabianwimberger/homeassistant-sma",
-  "issue_tracker": "https://github.com/fabianwimberger/homeassistant-sma/issues"
+  "version": "1.1.4"
 }
