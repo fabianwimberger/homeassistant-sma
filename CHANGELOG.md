@@ -5,6 +5,31 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.5] - 2026-09-19
+
+Adds HACS and hassfest validation, fixes the HACS minimum Home Assistant version, and guards against version drift between the manifest and pyproject.
+
+### Fixes
+
+- Correct the minimum Home Assistant version declared for HACS, which was higher than the integration actually requires
+- Sort the manifest keys so the integration passes hassfest validation
+
+### CI
+
+- Add hassfest and HACS validation workflows
+- Pin the lint tools to the versions under test
+- Drop the drifted dev extra in favour of `requirements_test.txt`
+- Add a test that guards against version drift between the manifest and `pyproject.toml`
+
+### Dependencies
+
+- Bump ruff from 0.16.2 to 0.16.7
+- Bump mypy from 2.3.0 to 2.3.1
+
+### Documentation & Links
+
+- [README](https://github.com/fabianwimberger/homeassistant-sma#readme)
+
 ## [v1.1.4] - 2026-08-15
 
 Smart Meter Adapter now runs against Home Assistant 2026.8.2 and aiohttp 3.14.3, closing out the pending Dependabot security alerts on the aiohttp dependency chain.
