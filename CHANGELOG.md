@@ -5,15 +5,6 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v1.1.6] - 2026-10-01
-
-Removes redundant comments and docstrings while retaining explanations of meter behavior.
-
-### Documentation & Links
-
-- [README](https://github.com/fabianwimberger/homeassistant-sma#readme)
-- [Full changelog](https://github.com/fabianwimberger/homeassistant-sma/compare/v1.1.5...v1.1.6)
-
 ## [v1.1.5] - 2026-09-19
 
 Adds HACS and hassfest validation, fixes the HACS minimum Home Assistant version, and guards against version drift between the manifest and pyproject.
