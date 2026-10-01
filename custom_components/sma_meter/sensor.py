@@ -20,7 +20,6 @@ async def async_setup_entry(
     entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up SMA sensors."""
     coordinator: SmaDataCoordinator = entry.runtime_data
     available = coordinator.client.available_obis
 
@@ -50,7 +49,6 @@ class SmaSensor(SmaEntity, SensorEntity):
 
     @property
     def native_value(self) -> float | int | str | None:
-        """Return the sensor value."""
         if self.coordinator.data is None:
             return None
         raw: float | str | None = self.coordinator.data.get(self._sma_key)

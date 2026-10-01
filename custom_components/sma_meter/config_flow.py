@@ -61,11 +61,9 @@ class SmaConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]  # HA 
 
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> SmaOptionsFlow:
-        """Get the options flow handler."""
         return SmaOptionsFlow()
 
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
-        """Handle the initial step."""
         errors: dict[str, str] = {}
 
         if user_input is not None:
@@ -102,7 +100,6 @@ class SmaConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]  # HA 
     async def async_step_reconfigure(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
-        """Handle reconfiguration."""
         errors: dict[str, str] = {}
         entry = self._get_reconfigure_entry()
 
@@ -156,7 +153,6 @@ class SmaOptionsFlow(OptionsFlow):
     """Handle options for SMA."""
 
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
-        """Manage the scan interval option."""
         if user_input is not None:
             return self.async_create_entry(data=user_input)
 

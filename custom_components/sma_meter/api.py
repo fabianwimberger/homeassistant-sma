@@ -116,7 +116,6 @@ class SmaApiClient:
         return None
 
     async def async_read_measurement(self) -> dict[str, Any]:
-        """Read measurement data from the SMA."""
         data = await self._async_get_json(API_ENDPOINT_MEASUREMENT)
         if isinstance(data, dict):
             return data
@@ -136,7 +135,6 @@ class SmaApiClient:
                     if isinstance(value, (str, int, float)):
                         result[key] = str(value)
                     elif isinstance(value, dict):
-                        # Flatten nested dicts with dot notation
                         for sub_key, sub_value in value.items():
                             if isinstance(sub_value, (str, int, float)):
                                 result[f"{key}.{sub_key}"] = str(sub_value)

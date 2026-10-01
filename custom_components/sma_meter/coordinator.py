@@ -34,7 +34,6 @@ class SmaDataCoordinator(DataUpdateCoordinator[dict[str, float | str]]):
         self.device_info_data = device_info or {}
 
     async def _async_update_data(self) -> dict[str, float | str]:
-        """Fetch data from the SMA."""
         try:
             raw = await self.client.async_read_measurement()
         except SmaApiError as err:
@@ -60,7 +59,6 @@ class SmaDataCoordinator(DataUpdateCoordinator[dict[str, float | str]]):
 
 
 def _parse_value(value: object) -> float | None:
-    """Parse a raw value to float."""
     if isinstance(value, bool):
         return 1.0 if value else 0.0
     if isinstance(value, (int, float)):
