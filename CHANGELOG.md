@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.7] - 2026-10-03
+
+Restores the documented development installation and updates coverage publishing.
+
+### Fixes
+
+- Provide the pinned development dependencies through the documented `dev` extra
+- Run linting and tests in virtual environments
+- Publish coverage through GitHub authentication and report upload failures
+
+### Documentation & Links
+
+- [README](https://github.com/fabianwimberger/homeassistant-sma#readme)
+
 ## [v1.1.6] - 2026-10-02
 
 Fixes hassfest validation by using Home Assistant's bundled aiohttp dependency.
