@@ -108,9 +108,12 @@ The integration supports Home Assistant's built-in diagnostics export. Go to the
 
 ## Development
 
+The pinned test environment requires Python 3.14.2 or later.
+
 ```bash
-pip install -e ".[dev]"
-pytest
+python -m venv .venv
+.venv/bin/python -m pip install -e '.[dev]'
+.venv/bin/python -m pytest
 ```
 
 See [docs/TESTING.md](docs/TESTING.md) for testing with a fresh Home Assistant instance.

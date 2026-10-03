@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "homeassistant-sma"
-version = "1.1.6"
+version = "1.1.7"
 description = "Smart Meter Adapter (SMA) Integration for Home Assistant"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -16,6 +16,23 @@ classifiers = [
 ]
 dependencies = [
     "aiohttp>=3.9.0",
+]
+
+[project.optional-dependencies]
+lint = [
+    "ruff==0.16.9",
+    "mypy==2.3.1",
+]
+dev = [
+    "homeassistant-sma[lint]",
+    "pytest==9.0.3",
+    "pytest-aiohttp==1.1.1",
+    "pytest-cov==7.1.0",
+    "pytest-homeassistant-custom-component==0.13.356",
+    "homeassistant==2026.8.2",
+    "aiohttp==3.14.3",
+    # The maintained fork retains the aioresponses import used by the tests.
+    "aioresponses-ng==0.8.2",
 ]
 
 [tool.pytest.ini_options]
