@@ -23,7 +23,7 @@ The Smart Meter Adapter (SMA) from Österreichs E-Wirtschaft reads encrypted sma
 - **Correct scaling** — Wh → kWh for energy values automatically
 - **Per-phase sensors** — power, current, and voltage for L1–L3
 - **Device info** — firmware version and SMA ID read from hardware
-- **Diagnostics** — built-in HA diagnostics export for troubleshooting
+- **Diagnostics** — **Download diagnostics** on the integration page dumps the configuration, probed OBIS codes, and current values
 - **Configurable polling** — scan interval from 5 to 300 seconds
 - **Re-configurable** — change host or token without re-adding the integration
 
@@ -83,10 +83,6 @@ Common sensors include:
 | Frequency | 1-0:14.7.0 | Hz |
 | Power factor | 1-0:13.7.0 | – |
 
-## Diagnostics
-
-The integration supports Home Assistant's built-in diagnostics export. Go to the integration page and click **Download diagnostics** to get a JSON dump of the current configuration and sensor values.
-
 ## Configuration
 
 ### Changing Settings After Setup
@@ -96,15 +92,7 @@ The integration supports Home Assistant's built-in diagnostics export. Go to the
 
 ## Troubleshooting
 
-**No sensors appearing:**
-- Verify the SMA IP address is correct
-- Check that the SMA web interface is accessible
-- Ensure the authorization token is valid
-- Download diagnostics to see which OBIS codes were probed
-
-**Sensors showing as unavailable:**
-- Check network connectivity to the SMA
-- Some OBIS codes may not be available on your specific meter configuration
+If sensors are missing or unavailable, check that the SMA web interface is reachable from Home Assistant and the token is valid, then download diagnostics to see which OBIS codes were probed. Codes the meter does not provide are not created.
 
 ## Development
 
@@ -118,8 +106,6 @@ python -m venv .venv
 
 See [docs/TESTING.md](docs/TESTING.md) for testing with a fresh Home Assistant instance.
 
-## License & Disclaimer
+## License
 
 MIT License — see [LICENSE](LICENSE) file.
-
-This project uses the "Smart Meter Adapter (SMA)" name to identify the compatible device. This project is an independent, community-created integration and is **not affiliated with, endorsed by, or sponsored by Österreichs Energie, Österreichs E-Wirtschaft, or any Austrian grid operator**. Use of the SMA name is for identification and compatibility purposes only.
